@@ -17,7 +17,7 @@ ADD . .
 
 # Python packages install
 RUN pip install poetry
-RUN cd recipes_db_api && poetry config virtualenvs.create false \
+RUN cd flask_backend && poetry config virtualenvs.create false \
   && poetry install --only main --no-interaction --no-ansi 
 
 WORKDIR /
