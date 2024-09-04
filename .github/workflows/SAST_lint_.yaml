@@ -1,0 +1,8 @@
+name: Lint and SAST
+
+on: [push, pull_request]
+
+jobs:
+    sast-and-lint-checks:
+        runs-on: ubuntu-22.04
+            - uses: actions/checkout@v3

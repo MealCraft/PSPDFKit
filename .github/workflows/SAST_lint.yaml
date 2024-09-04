@@ -1,0 +1,3 @@
+name: Lint and SAST
+
+on: [push, pull_request]
