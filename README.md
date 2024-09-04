@@ -4,6 +4,9 @@ Create and automate the building of a Go web application to be distributed as a 
 the following process:
 
 - [x] 1. Create a clean Github repository
+
+- [ ] Make a small devcontainer for a flask container application
+
 - [ ] 2. Write a very basic HTTP web server application that simply listens on a port and prints
          “Hello from PSPDFKit Engineer!” Nothing fancy or complicated. This doesn’t need to be
          done from memory, it’s not a test of your development technique per se but rather a

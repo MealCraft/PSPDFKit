@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  main:
+    # get git to work in devcontainers
+    user: "${UID}:${GID}"
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    command: sleep infinity
+    volumes:
+      - ..:/workspace
