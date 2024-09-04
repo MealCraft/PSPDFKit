@@ -5,7 +5,7 @@ from flask import (
 
 bp = Blueprint("main", __name__)
 
-# K8s needs a place where a return 200 is always true for probing and checking 'alive' status
+
 @bp.route("/health")
 def health_status_for_k8s():
     """
@@ -17,6 +17,6 @@ def health_status_for_k8s():
 @bp.route("/")
 def home_page():
     """
-    returns index (home) page 
+    returns index (home) page.
     """
     return "Hello from PSPDFKit Engineer"
