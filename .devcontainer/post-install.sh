@@ -1,3 +1,3 @@
-# cd flask_backend;
-# poetry install;
-# cd ..;
+cd flask_backend;
+poetry install;
+cd ..;
