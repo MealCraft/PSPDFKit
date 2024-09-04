@@ -5,8 +5,8 @@
 	"workspaceFolder": "/workspace/",
 	"postStartCommand": "bash .devcontainer/post-install.sh",
 	"extensions": [
-		"extensions": [
-			"GitHub.copilot",
-			"GitHub.vscode-github-actions"
-		]
+		"extensions",
+		"GitHub.vscode-github-actions",
+		"ms-python.flake8"
+	]
 }
