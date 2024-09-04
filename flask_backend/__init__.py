@@ -1,6 +1,7 @@
 from flask import Flask
 from . import app
 
+
 def create_app(settings=None):
     """
     Creats the flask app with certain settings
@@ -13,7 +14,6 @@ def create_app(settings=None):
     flask_app.register_blueprint(app.bp)
 
     return flask_app
-
 
 
 if __name__ == "__main__":
