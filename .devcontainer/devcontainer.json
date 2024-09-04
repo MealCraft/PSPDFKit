@@ -2,7 +2,7 @@
 	"name": "Ubuntu",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "main",
-	"workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
+	"workspaceFolder": "/workspace/",
 	"postStartCommand": "bash .devcontainer/post-install.sh",
 	"extensions": [
 		"extensions": [
