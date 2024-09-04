@@ -17,8 +17,11 @@ the following process:
             - [ ] exec a SAST, 
             - [ ] lint and 
             - [ ] build ( Build a docker image )
-- [ ] 4. Create a Github Action that, on each Github Repository Release, tests, builds, and
-         stores the binary (again, depending on your language of choice) as a release asset
+- [ ] 4. Create a Github Action that, on each Github Repository Release, 
+            - on git push and tag
+                    - [ ] tests
+                    - [ ] builds
+                    - [ ] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
 
 # Phase 2: Containerization & CI/CD
 
