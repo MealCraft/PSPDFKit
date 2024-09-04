@@ -26,4 +26,4 @@ jobs:
               run: bandit -r .
 
             - name: Build
-              run: echo "Flask web app doesn't need to be built but will build a docker container image in next file"
+              run: echo "Flask web app doesn't need to be built but will build a docker container image in next yaml file"
