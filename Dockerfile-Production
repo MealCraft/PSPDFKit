@@ -1,0 +1,27 @@
+# From Ubunutu
+FROM ubuntu:22.04
+
+ENV FLASK_APP flask_backend
+
+# Add packages to ubuntu
+RUN apt-get update
+RUN apt-get install -y \
+    vim \
+    python3.10.12 \
+    python3-pip \
+    python-is-python3 \
+    curl
+
+# checkout code
+ADD . .
+
+# Python packages install
+RUN pip install poetry
+RUN cd recipes_db_api && poetry config virtualenvs.create false \
+  && poetry install --only main --no-interaction --no-ansi 
+
+WORKDIR /
+EXPOSE 80
+
+ENTRYPOINT ["poetry", "run"]
+CMD ["gunicorn", "flask_backend:create_app()"]
