@@ -24,3 +24,6 @@ jobs:
 
             - name: Run SAST with Bandit
               run: bandit -r .
+
+            - name: Build
+              run: echo "Flask web app doesn't need to be built but will build a docker container image in next file"
