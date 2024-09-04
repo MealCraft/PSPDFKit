@@ -7,16 +7,21 @@ the following process:
 
 - [x] Make a small devcontainer for a flask container application
     - [x] Install Python
-    - [ ] Start a new python flask server
+    - [x] Start a new python flask server
 
-- [ ] 2. Write a very basic HTTP web server application that simply listens on a port and prints
+- [x] 2. Write a very basic HTTP web server application that simply listens on a port and prints
          “Hello from PSPDFKit Engineer!” Nothing fancy or complicated. This doesn’t need to be
          done from memory, it’s not a test of your development technique per se but rather a
          basic level competency.
-- [ ] 3. Create a Github Action exec a SAST, lint and then build (depending on your language of
-         choice).
-- [ ] 4. Create a Github Action that, on each Github Repository Release, tests, builds, and
-         stores the binary (again, depending on your language of choice) as a release asset
+- [x] 3. Create a Github Action 
+            - [x] exec a SAST, 
+            - [x] lint and 
+            - [ ] build ( Build a docker image )
+- [ ] 4. Create a Github Action that, on each Github Repository Release, 
+            - on git push and tag
+                    - [ ] tests
+                    - [ ] builds
+                    - [ ] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
 
 # Phase 2: Containerization & CI/CD
 

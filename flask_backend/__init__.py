@@ -1,5 +1,5 @@
 from flask import Flask
-from . import app
+
 
 def create_app(settings=None):
     """
@@ -10,15 +10,15 @@ def create_app(settings=None):
     # Slashes at the end doesn't matter
     flask_app.url_map.strict_slashes = False
 
+    from . import app
     flask_app.register_blueprint(app.bp)
 
     return flask_app
 
 
-
 if __name__ == "__main__":
     app = create_app()
     app.run(
-        host="0.0.0.0",
+        host="127.0.0.1",
         port=80,
     )
