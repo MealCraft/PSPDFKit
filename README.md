@@ -5,7 +5,9 @@ the following process:
 
 - [x] 1. Create a clean Github repository
 
-- [ ] Make a small devcontainer for a flask container application
+- [x] Make a small devcontainer for a flask container application
+    - [x] Install Python
+    - [ ] Start a new python flask server
 
 - [ ] 2. Write a very basic HTTP web server application that simply listens on a port and prints
          “Hello from PSPDFKit Engineer!” Nothing fancy or complicated. This doesn’t need to be
