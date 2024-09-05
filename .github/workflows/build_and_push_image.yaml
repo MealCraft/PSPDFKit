@@ -1,0 +1,31 @@
+name: Build and Push Image
+
+on:
+  workflow_run:
+    workflows: ["Sanity Checks"]
+    types:
+      - completed
+
+jobs:
+  build-docker-image:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Inject slug short variables
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build webservice_image
+        run: |
+          docker build . --file Dockerfile-Production --build-arg ENV_FILE=./.env --tag docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
+
+      - name: Push webservice to Docker Hub
+        run: |
+          docker push docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
