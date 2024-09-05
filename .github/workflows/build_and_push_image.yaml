@@ -34,7 +34,7 @@ jobs:
           docker push docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
 
   test_image_that_was_deployed:
-    needs: [build-docker-image]
+    needs: build-docker-image
     runs-on: ubuntu-22.04
     steps:
     - name: Inject slug short variables
