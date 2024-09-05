@@ -29,4 +29,3 @@ jobs:
       - name: Push webservice to Docker Hub
         run: |
           docker push docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
-
