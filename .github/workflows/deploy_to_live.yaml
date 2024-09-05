@@ -1,13 +1,9 @@
 name: Deploy to Production
 
 on:
-  workflow_run:
-    workflows: ["Build and Push Image"]
-    types:
-      - completed
   push:
     tags:
-      - '**'  
+      - '**'
 
 defaults:
   run:
