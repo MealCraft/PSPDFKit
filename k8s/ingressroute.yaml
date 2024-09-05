@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pspdfkit-page
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: "Host('pspdfkit.juntekim.com')"
+      kind: Rule
+      services:
+        - name: portfolio-page
+          port: 80
+          passHostHeader: false
+  tls:
+    certResolver: myresolver
+    domains:
+      - main: pspdfkit.juntekim.com
