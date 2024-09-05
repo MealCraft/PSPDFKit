@@ -1,4 +1,4 @@
-name: Lint and SAST
+name: Sanity Checks
 
 on: [push, pull_request]
 
