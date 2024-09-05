@@ -5,6 +5,9 @@ on:
     workflows: ["Sanity Checks"]
     types:
       - completed
+  push:
+    tags:
+      - '**'
 
 jobs:
   build-docker-image:
