@@ -32,8 +32,9 @@ prepare deployment and automate interaction in the following way:
 - [x] 1. Create a Dockerfile for the application created in Phase 1
 - [x] 2. Create an action which will containerize the released application and store it in a registry
          (DockerHub, GHCR, whatever you like)
-- [TODO NEXT] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that
+- [ ] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that
          would allow a simple ‘kubectl create ...’ to deploy the application
+            - [ ] Try to deploy to my k8s cluster. It might not work due to being a public repo, but try
 
 # Phase 3: Production Observability
 
