@@ -44,16 +44,16 @@ maintainable.
 
 **Please see hiring_manager_msg.md for answers to these questions** 
 
-- [ ] Please write approx. 1 page to describe how you would personally go about
+- [x] Please write approx. 1 page to describe how you would personally go about
 establishing 
-    - [ ] logging 
-    - [ ] tracing 
-    - [ ] metrics collection
-    - [ ] dashboarding 
-    - [ ] notifications
-    - [ ] alerting
+    - [x] logging 
+    - [x] tracing 
+    - [x] metrics collection
+    - [x] dashboarding 
+    - [x] notifications
+    - [x] alerting
 
-- [ ] Emphasis on how you’d do it and why you’d choose certain solutions and how that all works to
+- [x] Emphasis on how you’d do it and why you’d choose certain solutions and how that all works to
 satisfy the needs of your users and developers alike. 
 
 Store this document as Markdown in the repository.
