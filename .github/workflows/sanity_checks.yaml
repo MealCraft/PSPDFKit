@@ -29,6 +29,8 @@ jobs:
 
           - name: Apply Lint on code
             run: flake8 .
+            # I've added this line to allow it to 'fail' but run the pipeline if it features
+            # but enforces this on pull request for a smoother developer experience.
             continue-on-error: ${{ github.event_name == 'push' }}
 
           - name: Run SAST with Bandit
