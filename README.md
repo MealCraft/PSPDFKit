@@ -22,7 +22,7 @@ the following process:
                     - [x] tests (in pipeline)
                     - [x] builds (docker image in pipline)
                     - [x] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
-                    - [x] Please feel free to see the docker image here: https://hub.docker.com/repository/docker/kimjunte/pspdfkit/general
+                    - [] TODO: Please feel free to see the docker image here: https://hub.docker.com/r/kimjunte/pspdfkit/tags
 
 # Phase 2: Containerization & CI/CD
 
