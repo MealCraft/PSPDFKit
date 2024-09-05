@@ -45,7 +45,7 @@ Jun-te Kim
 │   ├── deployment.yaml
 │   ├── ingressroute.yaml
 │   └── services.yaml
-    # Dubious poetry file to ensure python
+    # Dubious poetry file to ensure python consistency
 ├── poetry.lock
 ├── pyproject.toml
 
