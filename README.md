@@ -22,17 +22,17 @@ the following process:
                     - [x] tests (in pipeline)
                     - [x] builds (docker image in pipline)
                     - [x] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
-                    - [ ] Please feel free to see the docker image here: https://hub.docker.com/repository/docker/kimjunte/pspdfkit/general
+                    - [x] Please feel free to see the docker image here: https://hub.docker.com/repository/docker/kimjunte/pspdfkit/general
 
 # Phase 2: Containerization & CI/CD
 
 Frequently deployment occurs in a repo other than the one in which development occurs,
 prepare deployment and automate interaction in the following way:
 
-- [ ] 1. Create a Dockerfile for the application created in Phase 1
-- [ ] 2. Create an action which will containerize the released application and store it in a registry
+- [x] 1. Create a Dockerfile for the application created in Phase 1
+- [x] 2. Create an action which will containerize the released application and store it in a registry
          (DockerHub, GHCR, whatever you like)
-- [ ] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that
+- [in progress] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that
          would allow a simple ‘kubectl create ...’ to deploy the application
 
 # Phase 3: Production Observability
