@@ -32,14 +32,17 @@ prepare deployment and automate interaction in the following way:
 - [x] 1. Create a Dockerfile for the application created in Phase 1
 - [x] 2. Create an action which will containerize the released application and store it in a registry
          (DockerHub, GHCR, whatever you like)
-- [ ] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that would allow a simple ‘kubectl create ...’ to deploy the application
-    - [ ] Try to deploy to my k8s cluster. It might not work due to being a public repo, but try
+- [x] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that would allow a simple ‘kubectl create ...’ to deploy the application
+    - [FAILED] Try to deploy to my k8s cluster. It might not work due to being a public repo, but try
+        - This failed due to being a public repository.
 
 # Phase 3: Production Observability
 
 Deployment is only the first part of an applications' lifecycle, in order to satisfy the needs of
 customers it must be available and performant, which means it must be observable and
 maintainable. 
+
+**Please see hiring_manager_msg.md for answers to these questions** 
 
 - [ ] Please write approx. 1 page to describe how you would personally go about
 establishing 
