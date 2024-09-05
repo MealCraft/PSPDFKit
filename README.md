@@ -20,8 +20,9 @@ the following process:
 - [ ] 4. Create a Github Action that, on each Github Repository Release, 
             - on git push and tag
                     - [x] tests (in pipeline)
-                    - [ ] builds (docker image in pipline)
-                    - [ ] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
+                    - [x] builds (docker image in pipline)
+                    - [x] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
+                    - [ ] Please feel free to see the docker image here: https://hub.docker.com/repository/docker/kimjunte/pspdfkit/general
 
 # Phase 2: Containerization & CI/CD
 
