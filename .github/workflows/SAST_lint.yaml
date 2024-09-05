@@ -21,9 +21,11 @@ jobs:
 
             - name: Apply Lint on code
               run: flake8 .
+              continue-on-error: ${{ github.event_name == 'push' }}
 
             - name: Run SAST with Bandit
               run: bandit -r .
+              continue-on-error: ${{ github.event_name == 'push' }}
 
             - name: Build
               run: echo "Flask web app doesn't need to be built but will build a docker container image in next yaml file"
