@@ -5,9 +5,6 @@ on:
     workflows: ["Build and Push Image"]
     types:
       - completed
-  push:
-    tags:
-      - '**'  
 
 defaults:
   run:
