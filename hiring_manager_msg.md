@@ -17,8 +17,8 @@ Jun-te Kim
 ```sh
 .
 ├── .devcontainer
-│   ├── # in the off chance you are experience with devcontainers
-│   ├── # here are these files so it excuses me from the 'but it works on my computer'
+│   ├── # In case you are experience with devcontainers
+│   ├── # the files to ensure environment consistency between developement
 │   ├── devcontainer.json
 │   ├── docker-compose.yml
 │   ├── Dockerfile
@@ -27,7 +27,7 @@ Jun-te Kim
 ├── Dockerfile-Production 
 
 ├── flask_backend
-|   ├── # Contains my python-flask webapp
+│   ├── # Contains my python-flask webapp
 │   ├── app.py
 │   ├── __init__.py
 
@@ -39,9 +39,9 @@ Jun-te Kim
 ├── hiring_manager_msg.md
 
 ├── k8s
-    ├── # My kubernetes deployment file in RAW goodness
-    ├── # Limited experience in Kustomize and Helm but excited to learn
-    ├── # and next logical step
+│   ├── # My kubernetes deployment file in RAW goodness
+│   ├── # Limited experience in Kustomize and Helm but excited to learn
+│   └── # and next logical step for more fancy k8s file deployment
 │   ├── deployment.yaml
 │   ├── ingressroute.yaml
 │   └── services.yaml
@@ -56,6 +56,7 @@ Jun-te Kim
 ├── run_tests.sh # runs pytest locally
 ├── startProduction.sh # runs production server locally
 ├── startWebServerLocally.sh # runs flask server locally
+
 └── tests
     ├── # Basic tests file for pytest to test flask server
     ├── conftest.py
@@ -64,20 +65,14 @@ Jun-te Kim
 ```
 # Phase 2.5 K8s deployment
 
-I have a small spare laptop that I've converted into a ubunutu server. 
+I initially planned to use my self-hosted microk8s to deploy live production for the PSPDFKit app. However, due to constraints with the private repository, this wasn’t feasible in this challenge's time frame.
 
-I have microk8s and the github runner installed for my 'mealcraft' organisation and is currently hosting www.juntekim.com and www.mealcraft.com, which are both reachable via the web.
-
-I was hoping I could just use my self-hosted microk8s to deploy the k8s files for live production to show you the pspdfkit flask web app **LIVE** but regretfully I have to do that with a *private* repository.
-
-I'll be happy to get everything running **LIVE** as a seperate task but I think givien the time constraint I should make a start on PHASE 3.
-
-I am also more diversed in gitlab pipeline but I seem to be lacking on how github does things. I'll be excited to know how you *should* or how PSPDFKit structure their pipeline yaml files to for tag released, features branches and pull requests. Pointing me to further reading materials/docs is also fine.
+I am also more diversed in gitlab pipeline but I seem to be lacking on how github does things. I would appreciate any insights into how PSPDFKit structures their pipelines. 
 
 # Other branches
 I have numbered and left the other branches intact within this repoistory so you can *git diff*.
 
-I hope this will be useful to you but not sure in reality. Nevertheless, it is there for your own amusement/time-sink.
+I hope this will be useful to you but not sure in reality. .
 
 
 # Phase 3
@@ -101,10 +96,10 @@ It also displays how each pod is entered by a certain entry point:
 
 [Imgur](https://imgur.com/VL0bUgC)
 
-I have used this to help me debug routing on kubernetes and all pods/services are up before *ssh*-ing to the server.
+This helps ensure all pods and services are routed correctly before accessing the server.
 
 ### Logging
-It is very useful to go into a pod and
+Logs are essential for debugging, monitoring requests, and tracking events in the application lifecycle.
 
 ```console
 kimjunte@gpd:~$ k get pods
@@ -127,4 +122,87 @@ kimjunte@gpd:~$ k logs juntekim-deployment-7db744cb78-tgh6v | tail -n 10
 [2024-09-02 20:10:14 +0000] [18] [DEBUG] GET /newsletter
 ```
 
+Within traefik documentation, traefik provides a way to capture logs and output them to a file. Via their traefik yaml file:
+```yaml
+log:
+  level: DEBUG
+  filePath: "/path/to/traefik.log"
+accessLog:
+  filePath: "/path/to/all_pod_logs_on_k8.log"
+```
+
+Source of knowledge: https://traefik.io/blog/log-aggregation-in-kubernetes-with-traefik-proxy/
+
+From docs: https://doc.traefik.io/traefik/observability/access-logs/
+
+As logs grow more verbose, filtering by headers, timestamps, and identifiers becomes essential for clarity.
+
+I have solved some of these issues by deploying an ELK stack in my previous line of work.
+
+The ELK stack will provide central logging for all pods, maybe even for different clusters and allow powerful search and analysis tools (filter). The kibana webview will also allow you to setup custom dashboards to help you debug an erronously problem and see how it behaves realtime.
+
+### Tracing
+
+End-to-end tracing helps developers and operations teams identify bottlenecks and resolve performance issues within microservices
+
+Traefik by default seems to be using OpenTelemetry (source: https://doc.traefik.io/traefik/observability/tracing/overview/). 
+
+Installation guide on opentelmetry: https://opentelemetry.io/docs/kubernetes/getting-started/
+
+### Metrics Collection:
+
+Traefik docs on metrics: https://doc.traefik.io/traefik/observability/metrics/overview/
+ 
+I have used prometheus and grafana in the past which also taefik supports.
+
+
+So Prometeus will get data (metrics) from different sources and aggrigate them to one. Then grafana can be used to query the metrics from prometeus and visualise the information.
+
+### Dashboarding 
+
+Since Grafana can be plugged into prometeus we can extract data and visualise. Obviously the promethus data has to be inputted so grafana can query it but the data source could range from antyhing to cpu usuage, memory, pings (latency).
+
+Can also make your own data using python-prometheus: https://github.com/prometheus/client_python
+
+The key things here is that grafana can now be used to visualise the data that we measured.
+
+Developers could use this visulisation to help to debug an performance issue that is happening when the microservice is overloaded, which could be loaded to pod by a test script.
+
+
+If one of the metrics is disk space and we track how full a certain disk is.
+
+### Notifications
+
+We can use grafana to set up alerts/notification to when the disk space is running out. Obviously we can do it for any other metrics but this is a way to simply the process.
+
+These alerts could then be plugged onto something that emails/messages/pings a developer to take manual action. ( the alert could also be diverted to a specific person/team ).
+
+This allows incident to be delt with in a more timely manner before the disk is completely full. (Provided the developer see and actions on the notification)
+
+Which in turns gives more system reliability and avalibility.
+
+It could also give more peace of mind to the developers as they can focus on their other high priorites until a notification is recieved. (Trade off being without a notification system, they have to watch over the system like a hawk). As a computer can do constant monitoring 24/7.
+
+### Summary
+
+I have chosen solution that integrate with traefik due to the familiarity and modularity of the proxy and my own k8s deployment.
+
+Once everything is in place, here’s an example of how a typical user and developer interaction could unfold.
+
+1) A user visits the website but is met with an unexpected issue—"Hello from PSPDFKit Engineer!" is not displaying as expected.
+2) The user reports this issue to the PSPDFKit team, which had not detected the error.
+The engineering team investigates the issue using available observability tools. Tracing reveals which pod the user interacted with, and logs indicate erroneous behavior that only occurs in Safari.
+3) The developer reproduces the behavior in their local environment, writes a test to cover the edge case, and incorporates it into the CI/CD pipeline.
+4) The developer resolves the issue and pushes the changes.
+5) During integration testing, another issue is discovered, but with the visibility provided by the observability tools, the developer quickly resolves both the original and new issue.
+6) After ensuring all test cases pass, the developer merges their changes and updates relevant documentation.
+7) The PSPDFKit team informs the user that the issue has been resolved, and the user is satisfied.
+8) The operations team enhances their alerting and monitoring tools to ensure this error does not occur on any browser in the future.
+
+
+As a result, the problems were detected early, and the issue was resolved before a wider impact. This demonstrates how observability enables rapid identification and resolution of bugs and regressions. By integrating tracing, logging, and monitoring, the development process becomes more efficient, allowing for quicker iterations and higher user satisfaction 
+
+Additionally, developers benefit from improved work-life balance as they can deploy with confidence, knowing that monitoring tools will alert them to any production issues, reducing stress and the need for constant manual-repitive (toil) checks.
+
+Ultimately, these observability tools ensure that production systems are reliable, resilient, and performant, leading to faster iteration cycles and higher user satisfaction.
 
