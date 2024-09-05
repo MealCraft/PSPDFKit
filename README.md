@@ -14,15 +14,15 @@ the following process:
          done from memory, it’s not a test of your development technique per se but rather a
          basic level competency.
 - [x] 3. Create a Github Action 
-            - [x] exec a SAST, 
-            - [x] lint and 
-            - [x] build ( Build a docker image )
+    - [x] exec a SAST, 
+        - [x] lint and 
+        - [x] build ( Build a docker image )
 - [x] 4. Create a Github Action that, on each Github Repository Release, 
-            - on git push and tag:
-                - [x] tests (in pipeline)
-                - [x] builds (docker image in pipline)
-                - [x] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
-                - [] TODO: Please feel free to see the docker image here: [Docker Hub - kimjunte/pspdfkit](https://hub.docker.com/r/kimjunte/pspdfkit/tags) 
+    - on git push and tag:
+        - [x] tests (in pipeline)
+        - [x] builds (docker image in pipline)
+        - [x] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
+        - [ ] TODO: Please feel free to see the docker image here: [Docker Hub - kimjunte/pspdfkit](https://hub.docker.com/r/kimjunte/pspdfkit/tags) 
 
 # Phase 2: Containerization & CI/CD
 
@@ -32,9 +32,8 @@ prepare deployment and automate interaction in the following way:
 - [x] 1. Create a Dockerfile for the application created in Phase 1
 - [x] 2. Create an action which will containerize the released application and store it in a registry
          (DockerHub, GHCR, whatever you like)
-- [ ] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that
-         would allow a simple ‘kubectl create ...’ to deploy the application
-            - [ ] Try to deploy to my k8s cluster. It might not work due to being a public repo, but try
+- [ ] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that would allow a simple ‘kubectl create ...’ to deploy the application
+    - [ ] Try to deploy to my k8s cluster. It might not work due to being a public repo, but try
 
 # Phase 3: Production Observability
 
