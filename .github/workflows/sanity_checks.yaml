@@ -1,6 +1,14 @@
 name: Sanity Checks
 
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - '**'
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
 
 jobs:
     sast-and-lint-checks:
