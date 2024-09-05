@@ -5,6 +5,9 @@ on:
     workflows: ["Build and Push Image"]
     types:
       - completed
+  push:
+    tags:
+      - '**'  
 
 defaults:
   run:
@@ -12,7 +15,7 @@ defaults:
 
 jobs:
   deploy_to_production:
-    if: startsWith(github.ref, 'refs/tags/')
+    if: ${{ github.event_name == 'workflow_run' && github.ref.startsWith('refs/tags/') && github.event.workflow_run.conclusion == 'success' }}
     runs-on: self-hosted
 
     steps:
