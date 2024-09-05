@@ -17,21 +17,22 @@ the following process:
             - [x] exec a SAST, 
             - [x] lint and 
             - [x] build ( Build a docker image )
-- [ ] 4. Create a Github Action that, on each Github Repository Release, 
+- [x] 4. Create a Github Action that, on each Github Repository Release, 
             - on git push and tag
                     - [x] tests (in pipeline)
-                    - [ ] builds (docker image in pipline)
-                    - [ ] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
+                    - [x] builds (docker image in pipline)
+                    - [x] stores the binary (again, depending on your language of choice) as a release asset ( Docker push to docker hub)
+                    - [] TODO: Please feel free to see the docker image here: https://hub.docker.com/r/kimjunte/pspdfkit/tags
 
 # Phase 2: Containerization & CI/CD
 
 Frequently deployment occurs in a repo other than the one in which development occurs,
 prepare deployment and automate interaction in the following way:
 
-- [ ] 1. Create a Dockerfile for the application created in Phase 1
-- [ ] 2. Create an action which will containerize the released application and store it in a registry
+- [x] 1. Create a Dockerfile for the application created in Phase 1
+- [x] 2. Create an action which will containerize the released application and store it in a registry
          (DockerHub, GHCR, whatever you like)
-- [ ] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that
+- [TODO NEXT] 3. Create a kubernetes definition (Helm Chart, Kustomize, Raw YAML, whatever) that
          would allow a simple ‘kubectl create ...’ to deploy the application
 
 # Phase 3: Production Observability
