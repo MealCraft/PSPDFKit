@@ -29,3 +29,6 @@ jobs:
 
             - name: Build
               run: echo "Flask web app doesn't need to be built but will build a docker container image in next yaml file"
+
+            - name: run_backend_tests
+              run: bash run_tests.sh
