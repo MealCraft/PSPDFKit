@@ -16,9 +16,13 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4
 
-      - name: Deploy to production
+      - name: run k8s
         run: |
-          echo "check it got here"
+          envsubst < k8s/deployment.yaml | kubectl apply -f -
+          envsubst < k8s/services.yaml | kubectl apply -f -
+          envsubst < k8s/ingressroute.yaml | kubectl apply -f -
