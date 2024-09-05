@@ -32,3 +32,43 @@ jobs:
       - name: Push webservice to Docker Hub
         run: |
           docker push docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
+
+    test_image_that_was_deployed:
+      needs: [build-docker-image]
+      runs-on: ubuntu-22.04
+      steps:
+      - name: Inject slug short variables
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: Pull the deployed image
+        run: docker pull docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
+        
+      - name: Run the deployed image
+        run: docker run -d -p 80:8080 --name pspdfkit_container docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
+      
+      - name: Wait for service to be ready
+        run: |
+          until curl -s http://localhost:8080 > /dev/null; do
+            echo "Waiting for the service to be ready..."
+            sleep 5
+          done
+
+      - name: Test the / endpoint
+        run: |
+          response=$(curl -s http://localhost:8080/)
+          expected_message="Hello from PSPDFKit Engineer"
+
+          if [ "$response" = "$expected_message" ]; then
+            echo "Test passed! / endpoint returned the expected message."
+            exit 0
+          else
+            echo "Test failed! / endpoint did not return the expected message."
+            echo "Expected: $expected_message"
+            echo "Got: $response"
+            exit 1
+          fi
+
+      - name: Teardown
+        run: |
+          docker stop pspdfkit_container
+          docker rm pspdfkit_container
