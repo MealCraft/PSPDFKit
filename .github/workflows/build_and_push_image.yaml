@@ -44,7 +44,7 @@ jobs:
       run: docker pull docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
       
     - name: Run the deployed image
-      run: docker run -d -p 80:8080 --name pspdfkit_container docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
+      run: docker run -d -p 8080:80 --name pspdfkit_container docker.io/${{ secrets.DOCKER_HUB_ORG_NAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_REF_SLUG
     
     - name: Wait for service to be ready
       run: |
