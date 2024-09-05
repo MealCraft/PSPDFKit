@@ -1,0 +1,8 @@
+namespace: staging
+bases:
+  ../../base
+
+
+images:
+  - name: kimjunte/pspdfkit:$GITHUB_REF_SLUG
+   
