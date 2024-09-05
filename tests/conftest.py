@@ -4,7 +4,7 @@ from flask_backend import create_app
 
 @pytest.fixture()
 def app():
-    web_app = create_app("testing")
+    app = create_app("testing")
     yield app
 
 
