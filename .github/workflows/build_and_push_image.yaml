@@ -2,7 +2,7 @@ name: Build and Push Image
 
 on:
   workflow_run:
-    workflows: ["Sainty Checks"]
+    workflows: ["Sanity Checks"]
     types:
       - completed
 
