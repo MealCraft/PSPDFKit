@@ -35,6 +35,7 @@ jobs:
 
   test_image_that_was_deployed:
     needs: build-docker-image
+    if: ${{ success() }} 
     runs-on: ubuntu-22.04
     steps:
       - name: Inject slug short variables
