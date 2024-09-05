@@ -17,7 +17,7 @@ the following process:
             - [x] exec a SAST, 
             - [x] lint and 
             - [x] build ( Build a docker image )
-- [ ] 4. Create a Github Action that, on each Github Repository Release, 
+- [x] 4. Create a Github Action that, on each Github Repository Release, 
             - on git push and tag
                     - [x] tests (in pipeline)
                     - [x] builds (docker image in pipline)
