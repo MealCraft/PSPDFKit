@@ -1,3 +1,7 @@
+# Message to hiring manager:
+# This is a demo pipeline and illustrated to show what a workflow could look like on tag/release
+
+# This has not been tested so I can not garantee this work. Especially after my new understanding of how 'workflow_run' works
 name: Deploy to Production
 
 on:
