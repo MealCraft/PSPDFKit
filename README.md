@@ -61,3 +61,20 @@ Store this document as Markdown in the repository.
 When you are done, provide the links to the Phase 1 & 2 repositories. 
 
 The challenge should take between 30m to 3 hours, not more.
+
+
+# Run Locally
+If you are running vscode, you can use the devcontainer to get the development environment set up.
+
+```bash
+# Runs the flask-webserver on development mode
+bash startWebServerLocally.sh
+```
+```bash
+# Runs the guniocrn wraped flask server to be production ready
+bash startProduction.sh
+```
+```bash
+# Runs basic api tests to ensure the behaviour of the server works as intended.
+bash run_tests.sh
+```
