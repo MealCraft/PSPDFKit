@@ -72,8 +72,6 @@ I am also more diversed in gitlab pipeline but I seem to be lacking on how githu
 # Other branches
 I have numbered and left the other branches intact within this repoistory so you can *git diff*.
 
-I hope this will be useful to you but not sure in reality. .
-
 
 # Phase 3
 On my microk8s set up. I have a [traefik pod](https://doc.traefik.io/traefik/) running.
@@ -169,13 +167,13 @@ The key things here is that grafana can now be used to visualise the data that w
 Developers could use this visulisation to help to debug an performance issue that is happening when the microservice is overloaded, which could be loaded to pod by a test script.
 
 
-If one of the metrics is disk space and we track how full a certain disk is.
+If one of the metrics is disk space and we can track how full a certain disk is.
 
 ### Notifications
 
-We can use grafana to set up alerts/notification to when the disk space is running out. Obviously we can do it for any other metrics but this is a way to simply the process.
+We can then use grafana to set up alerts/notification to when the disk space is running out. Obviously we can do it for any other metrics but this is a way to simplfy the process.
 
-These alerts could then be plugged onto something that emails/messages/pings a developer to take manual action. ( the alert could also be diverted to a specific person/team ).
+These alerts could then be plugged onto something that emails/messages/pings a developer to take manual action. ( the alert could also be diverted to a specific person/team, it could also be to trigger an automation).
 
 This allows incident to be delt with in a more timely manner before the disk is completely full. (Provided the developer see and actions on the notification)
 
@@ -192,9 +190,9 @@ Once everything is in place, here’s an example of how a typical user and devel
 1) A user visits the website but is met with an unexpected issue—"Hello from PSPDFKit Engineer!" is not displaying as expected.
 2) The user reports this issue to the PSPDFKit team, which had not detected the error.
 The engineering team investigates the issue using available observability tools. Tracing reveals which pod the user interacted with, and logs indicate erroneous behavior that only occurs in Safari.
-3) The developer reproduces the behavior in their local environment, writes a test to cover the edge case, and incorporates it into the CI/CD pipeline.
-4) The developer resolves the issue and pushes the changes.
-5) During integration testing, another issue is discovered, but with the visibility provided by the observability tools, the developer quickly resolves both the original and new issue.
+3) The developer reproduces the behavior in their local environment, writes a test to cover the edge case, and incorporates it into the CI/CD pipeline. The test now makes the CI/CD fail.
+4) The developer resolves the issue, the pipeline passes and pushes the changes via a pull request.
+5) During integration testing (maybe at a pull request), another issue is discovered, but with the visibility and logs via the stdout of the pipeline, the developer quickly resolves both the original and new issue.
 6) After ensuring all test cases pass, the developer merges their changes and updates relevant documentation.
 7) The PSPDFKit team informs the user that the issue has been resolved, and the user is satisfied.
 8) The operations team enhances their alerting and monitoring tools to ensure this error does not occur on any browser in the future.
