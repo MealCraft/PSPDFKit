@@ -39,7 +39,7 @@ Jun-te Kim
 ├── hiring_manager_msg.md
 
 ├── k8s
-│   ├── # My kubernetes deployment file in RAW goodness
+│   ├── # My kubernetes deployment file in RAW
 │   ├── # Limited experience in Kustomize and Helm but excited to learn
 │   └── # and next logical step for more fancy k8s file deployment
 │   ├── deployment.yaml
